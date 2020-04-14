@@ -6,48 +6,98 @@
 
 <a href="http://selenide.org/"><img src ="http://selenide.org/images/selenide-logo-big.png" height = "110"></a>
 
+## LambdaTest with Selenide Automation Framework : 
+
+Selenide automation framework acts as a wrapper of Selenium WebDriver to help you write crisp and concise UI tests in Java. Selenide automatically takes care of browser shutdown, handling timeouts, test debugging, and StaleElement Exception, so you only focus on improving your business logic.
+
+LambdaTest integration with Selenide automation framework will help you pace your test automation effort even further. Using our on-cloud Selenium Grid you will be able to run your automation script on more than 2000 real browsers & browser versions running across numerous devices & operating systems.
+
+## Prerequisites for running tests using Selenide automation framework :
+
 ## Environment Setup 
+
 1. Global Dependencies
+
+   Make sure you have the latest Java installed in your system.
    
-   For Windows
-   You can download Java for Windows from http://www.java.com/en/download/manual.jsp 
+   For Windows :
+   
+   You can download Java for Windows from [here](http://www.java.com/en/download/manual.jsp)
+   
    Run the installer and follow the setup wizard to install Java.
    
-   For Linux
+   and create a new JAVA_HOME environment variable and set variable value as path value to JDK folder.
+   
+   #### This is Windows environment variable location :
+   Control Panel > All Control Panel Items > System > Advanced system settings > Environment Variables
+   
+   For Linux :
+   
+   use this command :
    ```
    sudo apt-get install openjdk-8-jre
    ```
    For Mac
    Java should already be present on Mac OS X by default
    
-   Install Maven from https://maven.apache.org/install.html
+   Install Maven from [here](https://maven.apache.org/install.html)
    
-2. Lambdatest Credentials
-    * Set LambdaTest username and access key in environment variables. It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)    
+2 Setup
+
+•	You can download the file. To do this click on “Clone or download” button. You can download zip file.
+
+   Go to “selenide-testng-sample-master” folder and copy its path.
+   Open command prompt and run :
+   
+    cd <path> (that you have copied)
+    
+    (please ignore "<" , ">" symbols)
+
+•	To clone the file, click on “Clone or download” button and copy the link.
+
+•	Then open the command prompt in the folder you want to clone the file. Run the command:
+
+      git clone <paste link here> 
+      
+* Install maven dependencies through this command :
+
+    mvn compile
+    
+* Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
+
+   
+3. Lambdatest Credentials
+    * Set LambdaTest username and access key in environment variables.
+    It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)    
     example:
     - For linux/mac
     ```
-    export LT_USERNAME="YOUR_USERNAME"
-    export LT_ACCESS_KEY="YOUR ACCESS KEY"
+    export LT_USERNAME=<YOUR_USERNAME>
+    export LT_ACCESS_KEY=<YOUR ACCESS KEY>
     
     ```
     - For Windows
     ```
-    set LT_USERNAME="YOUR_USERNAME"
-    set LT_ACCESS_KEY="YOUR ACCESS KEY"
+    set LT_USERNAME=<YOUR_USERNAME>
+    set LT_ACCESS_KEY=<YOUR ACCESS KEY>
     
     ```
-3. Setup
-
-* Clone the repo
-* Install dependencies `mvn compile`
-* Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
 
 4. Running your tests
 
-- To run a single test, run `mvn test -P single`
-- To run a full suite of tests, run `mvn test -P suite`
-- To run parallel tests, run `mvn test -P parallel`
+Use these commands
+
+- To run a single test :
+
+   mvn test -P single
+
+- To run a full suite of tests :
+
+   mvn test -P suite
+   
+- To run parallel tests :
+
+   mvn test -P parallel
 
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
 
