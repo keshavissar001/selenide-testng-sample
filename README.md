@@ -82,8 +82,11 @@ LambdaTest integration with Selenide automation framework will help you pace you
 
    
 ### 4. Lambdatest Credentials
-    * Set LambdaTest username and access key in environment variables.
-    It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)    
+
+Set LambdaTest username and access key in environment variables.
+    
+It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)   
+
     example:
     - For linux/mac
     ```
