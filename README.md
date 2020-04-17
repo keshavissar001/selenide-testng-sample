@@ -59,7 +59,7 @@ LambdaTest integration with Selenide automation framework will help you pace you
     (please ignore "<" , ">" symbols)
     
 
-[image]()
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SetPath.png)
 
 •	To clone the file, click on “Clone or download” button and copy the link.
 
@@ -71,7 +71,7 @@ LambdaTest integration with Selenide automation framework will help you pace you
 
     mvn compile
     
-    [image]()
+    ![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/mvnCompile.png)
     
 * Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
 
@@ -143,7 +143,9 @@ Here is single.conf.json file to setup mandatory details to run at LambdaTest. Y
 
 {
 	"server": "hub.lambdatest.com",
+	
 	"user": "YOUR_USERNAME",      //put Your User Name here
+	
 	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
 
 	"capabilities": {
@@ -182,9 +184,8 @@ This is single.testng.xml file that is used to run the test :
 You would need to execute the below command in your terminal/cmd :
 
    mvn test -P single
-   
-   
-[image]()
+      
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/singleTestResult.png)
 
 ### Executing Parallel Tests In Selenide Automation Framework
 
@@ -194,8 +195,10 @@ Here is parallel.conf.json file to setup mandatory details to run at LambdaTest.
 
 {
 	"server": "hub.lambdatest.com",
-	"user": "YOUR_USERNAME",     //put Your User Name here
-	"key": "YOUR_ACCESS_KEY",    //put Your Access Key here
+	
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
 
 	"capabilities": {
 		"build": "Java Selenide Parallel",
@@ -260,14 +263,18 @@ You would need to execute the below command in your terminal/cmd :
 
    mvn test -P parallel
    
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/ParallelResult.png)
+
 ### Executing Test Suite In Selenide Automation Framework
 
 Here is suite.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
 
 {
 	"server": "hub.lambdatest.com",
-	"user": "YOUR_USERNAME",     //put Your User Name here
-	"key": "YOUR_ACCESS_KEY",    //put Your Access Key here
+	
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
 
 	"capabilities": {
 		"build": "Java Selenide Suite",
@@ -511,6 +518,9 @@ You would need to execute the below command in your terminal/cmd :
 
    mvn test -P suite
    
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SuiteResult1%20(2).png)
+
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SuitrResult2.png)
 
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
 
