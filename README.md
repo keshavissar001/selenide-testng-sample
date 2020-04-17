@@ -29,7 +29,7 @@ LambdaTest integration with Selenide automation framework will help you pace you
    #### This is Windows environment variable location :
    Control Panel > All Control Panel Items > System > Advanced system settings > Environment Variables
    
-   [image]()
+   ![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/Img1.png)
    
    ii. For Linux :
    
