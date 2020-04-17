@@ -16,35 +16,40 @@ LambdaTest integration with Selenide automation framework will help you pace you
 
 ## Environment Setup 
 
-1. Global Dependencies
-
-   Make sure you have the latest Java installed in your system.
+### 1. Java Installation
    
-   For Windows :
+   i.   For Windows :
    
    You can download Java for Windows from [here](http://www.java.com/en/download/manual.jsp)
    
    Run the installer and follow the setup wizard to install Java.
    
-   and create a new JAVA_HOME environment variable and set variable value as path value to JDK folder.
+   create a new JAVA_HOME environment variable and set variable value as path value to JDK folder.
    
    #### This is Windows environment variable location :
    Control Panel > All Control Panel Items > System > Advanced system settings > Environment Variables
    
-   For Linux :
+   [image]()
+   
+   ii. For Linux :
    
    use this command :
    ```
    sudo apt-get install openjdk-8-jre
    ```
-   For Mac
+   iii. For Mac
+   
    Java should already be present on Mac OS X by default
+   
+   ### 2. Maven Installation
    
    Install Maven from [here](https://maven.apache.org/install.html)
    
-2 Setup
+### 3 Setup
 
 •	You can download the file. To do this click on “Clone or download” button. You can download zip file.
+   
+   Right click on this zip file and extract files in your desired location.
 
    Go to “selenide-testng-sample-master” folder and copy its path.
    Open command prompt and run :
@@ -52,6 +57,9 @@ LambdaTest integration with Selenide automation framework will help you pace you
     cd <path> (that you have copied)
     
     (please ignore "<" , ">" symbols)
+    
+
+[image]()
 
 •	To clone the file, click on “Clone or download” button and copy the link.
 
@@ -59,14 +67,21 @@ LambdaTest integration with Selenide automation framework will help you pace you
 
       git clone <paste link here> 
       
-* Install maven dependencies through this command :
+* Make sure to install the mandatory Selenium dependencies for Maven by running the below command :
 
     mvn compile
     
+    [image]()
+    
 * Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
 
+
+"user": "YOUR_USERNAME",
    
-3. Lambdatest Credentials
+"key": "YOUR_ACCESS_KEY",
+
+   
+### 4. Lambdatest Credentials
     * Set LambdaTest username and access key in environment variables.
     It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)    
     example:
@@ -83,21 +98,419 @@ LambdaTest integration with Selenide automation framework will help you pace you
     
     ```
 
-4. Running your tests
+### 5. Running your tests
 
-Use these commands
+Let’ start with a simple Selenium Remote Webdriver test first. This Selenide script below tests whether the expected title is same as that of given page.
 
-- To run a single test :
+Now here is the sample test file (SingleTest.java file) which is to be executed for the automation test through LambdaTest :
+
+
+package com.lambdatest;
+
+import static com.codeborne.selenide.Selenide.$;
+
+import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selenide.sleep;
+
+import static com.codeborne.selenide.Selenide.title;
+
+import org.openqa.selenium.By;
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+public class SingleTest extends LambdaTestSetup {
+
+	@Test
+	public void test() throws Exception {
+
+		open("http://www.google.co.uk");
+
+		$(By.name("q")).setValue("LambdaTest").pressEnter();
+
+		sleep(2000);
+
+		Assert.assertEquals(title(), "LambdaTest - Google Search");
+
+		status = "passed";
+	}
+
+}
+
+Here is single.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+{
+	"server": "hub.lambdatest.com",
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Single",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+		    "platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		}
+	}
+}
+
+This is single.testng.xml file that is used to run the test :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Single">
+	<test name="SingleTest">
+		<parameter name="config" value="single.conf.json"/>
+		<parameter name="environment" value="chrome"/>
+		<classes>
+			<class name="com.lambdatest.SingleTest"/>
+		</classes>
+	</test>
+</suite>
+
+### Execute The Test
+
+You would need to execute the below command in your terminal/cmd :
 
    mvn test -P single
+   
+   
+[image]()
 
-- To run a full suite of tests :
+### Executing Parallel Tests In Selenide Automation Framework
+
+One of the most important features of LambdaTest Selenium grid is the ability to run your test cases in parallel. What that means is that if you have more than one concurrent session, you can run your test cases on more than one machine at a time, which greatly cuts down your test times. To put it in perspective, if you have 100 test cases each with an average run time of 1 minute, without parallel testing it would take 100 minutes to execute. However, with 2 concurrent sessions, you can run 2 test cases in parallel at a time and can cut down the build’s test time to 50 minutes. With four concurrent sessions, it would cut down to 25 minutes. With eight, well you got the picture.
+
+Here is parallel.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+{
+	"server": "hub.lambdatest.com",
+	"user": "YOUR_USERNAME",     //put Your User Name here
+	"key": "YOUR_ACCESS_KEY",    //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Parallel",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+		    "platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		},
+		"firefox": {
+			"platform": "windows 8.1",
+			"browserName": "firefox",
+			"version":"65"
+		},
+		"safari": {
+			"platform": "macOS Mojave",
+			"browserName": "safari",
+			"version":"12"
+		}
+	}
+}
+
+This is parallel.testng.xml file that is used to run the test :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel" thread-count="3" parallel="tests">
+	<test name="SingleTestChrome">
+    <parameter name="config" value="parallel.conf.json"/>
+    <parameter name="environment" value="chrome"/>
+    <classes>
+      <class name="com.lambdatest.SingleTest"/>
+    </classes>
+	</test>
+
+	<test name="SingleTestFirefox">
+    <parameter name="config" value="parallel.conf.json"/>
+    <parameter name="environment" value="firefox"/>
+    <classes>
+      <class name="com.lambdatest.SingleTest"/>
+    </classes>
+	</test>
+
+	<test name="SingleTestSafari">
+    <parameter name="config" value="parallel.conf.json"/>
+    <parameter name="environment" value="safari"/>
+    <classes>
+      <class name="com.lambdatest.SingleTest"/>
+    </classes>
+	</test>
+</suite>
+
+### Execute The Test
+
+You would need to execute the below command in your terminal/cmd :
+
+   mvn test -P parallel
+   
+### Executing Test Suite In Selenide Automation Framework
+
+Here is suite.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+{
+	"server": "hub.lambdatest.com",
+	"user": "YOUR_USERNAME",     //put Your User Name here
+	"key": "YOUR_ACCESS_KEY",    //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Suite",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+			"platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		},
+		"firefox": {
+			"platform": "windows 8.1",
+			"browserName": "firefox",
+			"version":"65"
+		},
+		"safari": {
+			"platform": "macOS Mojave",
+			"browserName": "safari",
+			"version":"12"
+		},
+		"edge": {
+			"platform": "windows 10",
+			"browserName": "MicrosoftEdge",
+			"version":"18"
+		}
+	}
+}
+
+Now here are the test suites file which will be executed for the automation test through LambdaTest :
+
+SuiteTest01.java :
+
+package com.lambdatest.suite;
+
+import static com.codeborne.selenide.Selenide.$;
+
+import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selenide.sleep;
+
+import static com.codeborne.selenide.Selenide.title;
+
+import org.openqa.selenium.By;
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+import com.lambdatest.LambdaTestSetup;
+
+public class SuiteTest01 extends LambdaTestSetup {
+
+	private String status="failed";
+	
+	@Test
+	public void test() throws Exception {
+
+		open("http://www.google.co.uk");
+
+		$(By.name("q")).setValue("LambdaTest").pressEnter();
+
+		sleep(2000);
+
+		Assert.assertEquals(title(), "LambdaTest - Google Search");
+		status="passed";
+	}
+
+	
+}
+
+SuiteTest02.java :
+
+package com.lambdatest.suite; 
+
+import static com.codeborne.selenide.Selenide.$;
+
+import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selenide.sleep;
+
+import static com.codeborne.selenide.Selenide.title;
+
+import org.openqa.selenium.By;
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+import com.lambdatest.LambdaTestSetup;
+
+public class SuiteTest02 extends LambdaTestSetup {
+  
+   @Test
+    public void test() throws Exception {
+
+	   open("http://www.google.co.uk");
+
+        $(By.name("q")).setValue("LambdaTest Automation").pressEnter();
+
+        sleep(2000);
+
+        Assert.assertEquals(title(), "LambdaTest Automation - Google Search");
+        status="passed";
+    }
+   
+}
+
+SuiteTest03.java :
+
+package com.lambdatest.suite;
+
+import static com.codeborne.selenide.Selenide.$;
+
+import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selenide.sleep;
+
+import static com.codeborne.selenide.Selenide.title;
+
+import org.openqa.selenium.By;
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+import com.lambdatest.LambdaTestSetup;
+
+public class SuiteTest03 extends LambdaTestSetup {
+
+    @Test
+    public void test() throws Exception {
+
+    	open("http://www.google.co.uk");
+
+        $(By.name("q")).setValue("LambdaTest Live Testing").pressEnter();
+
+        sleep(2000);
+
+        Assert.assertEquals(title(), "LambdaTest Live Testing - Google Search");
+        status="passed";
+       }
+   
+}
+
+SuiteTest04.java :
+
+package com.lambdatest.suite;
+
+import static com.codeborne.selenide.Selenide.$;
+
+import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selenide.sleep;
+
+import static com.codeborne.selenide.Selenide.title;
+
+import org.openqa.selenium.By;
+
+import org.testng.Assert;
+
+import org.testng.annotations.Test;
+
+import com.lambdatest.LambdaTestSetup;
+
+public class SuiteTest04 extends LambdaTestSetup {
+	
+    @Test
+    public void test() throws Exception {
+
+    	open("http://www.google.co.uk");
+
+        $(By.name("q")).setValue("LambdaTest Pricing").pressEnter();
+
+        sleep(2000);
+
+        Assert.assertEquals(title(), "LambdaTest Pricing - Google Search");
+        status="passed";
+       }
+  
+}
+
+This is suite.testng.xml file that is used to run the test :
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Pool" parallel="tests">
+    <test name="1" thread-count="3" parallel="classes">
+        <parameter name="config" value="suite.conf.json"/>
+        <parameter name="environment" value="chrome"/>
+        <classes>
+            <class name="com.lambdatest.suite.SuiteTest01"/>
+            <class name="com.lambdatest.suite.SuiteTest02"/>
+            <class name="com.lambdatest.suite.SuiteTest03"/>
+            <class name="com.lambdatest.suite.SuiteTest04"/>
+        </classes>
+    </test>
+
+    <test name="2" thread-count="3" parallel="classes">
+        <parameter name="config" value="suite.conf.json"/>
+        <parameter name="environment" value="firefox"/>
+        <classes>
+            <class name="com.lambdatest.suite.SuiteTest01"/>
+            <class name="com.lambdatest.suite.SuiteTest02"/>
+            <class name="com.lambdatest.suite.SuiteTest03"/>
+            <class name="com.lambdatest.suite.SuiteTest04"/>
+        </classes>
+    </test>
+
+    <test name="3" thread-count="3" parallel="classes">
+        <parameter name="config" value="suite.conf.json"/>
+        <parameter name="environment" value="firefox"/>
+        <classes>
+            <class name="com.lambdatest.suite.SuiteTest01"/>
+            <class name="com.lambdatest.suite.SuiteTest02"/>
+            <class name="com.lambdatest.suite.SuiteTest03"/>
+            <class name="com.lambdatest.suite.SuiteTest04"/>
+        </classes>
+    </test>
+
+    <test name="4" thread-count="3" parallel="classes">
+        <parameter name="config" value="suite.conf.json"/>
+        <parameter name="environment" value="firefox"/>
+        <classes>
+            <class name="com.lambdatest.suite.SuiteTest01"/>
+            <class name="com.lambdatest.suite.SuiteTest02"/>
+            <class name="com.lambdatest.suite.SuiteTest03"/>
+            <class name="com.lambdatest.suite.SuiteTest04"/>
+        </classes>
+    </test>
+</suite>
+
+
+### Execute The Test
+
+You would need to execute the below command in your terminal/cmd :
 
    mvn test -P suite
    
-- To run parallel tests :
-
-   mvn test -P parallel
 
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
 
