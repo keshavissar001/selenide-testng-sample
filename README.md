@@ -523,13 +523,26 @@ You would need to execute the below command in your terminal/cmd :
 ![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SuitrResult2.png)
 
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
+ 
+ 
+Below we see a screenshot that depicts our Robot code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
 
-#####  Routing traffic through your local machine
-- Set tunnel value to `true` in test capabilities
+![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/AutomationLogs.png)
+
+##  Testing Locally Hosted or Privately Hosted Projects
+
+To help you perform cross browser testing of your locally stored web pages, LambdaTest provides an SSH(Secure Shell) tunnel connection with the name Lambda Tunnel. With Lambda Tunnel, you can test your locally hosted files before you make them live over the internet. You could even perform cross browser testing from different IP addresses belonging to various geographic locations. You can also use LambdaTest Tunnel to test web-apps and websites that are permissible inside your corporate firewall.
+
+* Set tunnel value to True in test capabilities
 > OS specific instructions to download and setup tunnel binary can be found at the following links.
 >    - [Windows](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Windows)
 >    - [Mac](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+MacOS)
 >    - [Linux](https://www.lambdatest.com/support/docs/display/TD/Local+Testing+For+Linux)
+
+After setting tunnel you can also see the active tunnel in our LambdaTest dashboard:
+
+
+![tn](https://github.com/Apoorvlt/test/blob/master/tn.PNG)
 
 ### Important Note:
 Some Safari & IE browsers, doesn't support automatic resolution of the URL string "localhost". Therefore if you test on URLs like "http://localhost/" or "http://localhost:8080" etc, you would get an error in these browsers. A possible solution is to use "localhost.lambdatest.com" or replace the string "localhost" with machine IP address. For example if you wanted to test "http://localhost/dashboard" or, and your machine IP is 192.168.2.6 you can instead test on "http://192.168.2.6/dashboard" or "http://localhost.lambdatest.com/dashboard".
