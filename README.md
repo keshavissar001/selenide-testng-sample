@@ -47,7 +47,7 @@ LambdaTest integration with Selenide automation framework will help you pace you
    
 ### 3 Setup
 
-•	You can download the file. To do this click on “Clone or download” button. You can download zip file.
+   You can download the file. To do this click on “Clone or download” button. You can download zip file.
    
    Right click on this zip file and extract files in your desired location.
 
@@ -59,11 +59,12 @@ LambdaTest integration with Selenide automation framework will help you pace you
     (please ignore "<" , ">" symbols)
     
 
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SetPath.png)
+![altext](https://github.com/keshavissar001/images/blob/master/SetPath.png)
+
 
 •	To clone the file, click on “Clone or download” button and copy the link.
 
-•	Then open the command prompt in the folder you want to clone the file. Run the command:
+	Then open the command prompt in the folder you want to clone the file. Run the command:
 
       git clone <paste link here> 
       
@@ -71,7 +72,7 @@ LambdaTest integration with Selenide automation framework will help you pace you
 
     mvn compile
     
-    ![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/mvnCompile.png)
+    ![altext](https://github.com/keshavissar001/images/blob/master/mvnCompile.png) 
     
 * Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
 
@@ -106,6 +107,8 @@ It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com
 Let’ start with a simple Selenium Remote Webdriver test first. This Selenide script below tests whether the expected title is same as that of given page.
 
 This is LambdaTestSetup.java file that is executed before and after every method for setting up the remote webdriver and desired capabilities :
+
+```
 
 package com.lambdatest;
 
@@ -199,8 +202,11 @@ public class LambdaTestSetup {
 
 }
 
+```
+
 Now here is the sample test file (SingleTest.java file) which is to be executed for the automation test through LambdaTest :
 
+```
 
 package com.lambdatest;
 
@@ -236,7 +242,11 @@ public class SingleTest extends LambdaTestSetup {
 
 }
 
+```
+
 Here is single.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
 
 {
 	"server": "hub.lambdatest.com",
@@ -262,7 +272,11 @@ Here is single.conf.json file to setup mandatory details to run at LambdaTest. Y
 	}
 }
 
+```
+
 This is single.testng.xml file that is used to run the test :
+
+```
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
@@ -276,19 +290,25 @@ This is single.testng.xml file that is used to run the test :
 	</test>
 </suite>
 
+```
+
 ### Execute The Test
 
 You would need to execute the below command in your terminal/cmd :
 
+```
    mvn test -P single
+```
       
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/singleTestResult.png)
+   ![altext](https://github.com/keshavissar001/images/blob/master/singleTestResult.png)
 
 ### Executing Parallel Tests In Selenide Automation Framework
 
 One of the most important features of LambdaTest Selenium grid is the ability to run your test cases in parallel. What that means is that if you have more than one concurrent session, you can run your test cases on more than one machine at a time, which greatly cuts down your test times. To put it in perspective, if you have 100 test cases each with an average run time of 1 minute, without parallel testing it would take 100 minutes to execute. However, with 2 concurrent sessions, you can run 2 test cases in parallel at a time and can cut down the build’s test time to 50 minutes. With four concurrent sessions, it would cut down to 25 minutes. With eight, well you got the picture.
 
 Here is parallel.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
 
 {
 	"server": "hub.lambdatest.com",
@@ -324,7 +344,11 @@ Here is parallel.conf.json file to setup mandatory details to run at LambdaTest.
 	}
 }
 
+```
+
 This is parallel.testng.xml file that is used to run the test :
+
+```
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
@@ -354,17 +378,23 @@ This is parallel.testng.xml file that is used to run the test :
 	</test>
 </suite>
 
+```
+
 ### Execute The Test
 
 You would need to execute the below command in your terminal/cmd :
 
+```
    mvn test -P parallel
+```
    
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/ParallelResult.png)
+![altext](https://github.com/keshavissar001/images/blob/master/ParallelResult.png)
 
 ### Executing Test Suite In Selenide Automation Framework
 
 Here is suite.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
 
 {
 	"server": "hub.lambdatest.com",
@@ -405,9 +435,13 @@ Here is suite.conf.json file to setup mandatory details to run at LambdaTest. Yo
 	}
 }
 
+```
+
 Now here are the test suites file which will be executed for the automation test through LambdaTest :
 
 SuiteTest01.java :
+
+```
 
 package com.lambdatest.suite;
 
@@ -447,7 +481,11 @@ public class SuiteTest01 extends LambdaTestSetup {
 	
 }
 
+```
+
 SuiteTest02.java :
+
+```
 
 package com.lambdatest.suite; 
 
@@ -484,7 +522,11 @@ public class SuiteTest02 extends LambdaTestSetup {
    
 }
 
+```
+
 SuiteTest03.java :
+
+```
 
 package com.lambdatest.suite;
 
@@ -521,7 +563,11 @@ public class SuiteTest03 extends LambdaTestSetup {
    
 }
 
+```
+
 SuiteTest04.java :
+
+```
 
 package com.lambdatest.suite;
 
@@ -558,7 +604,11 @@ public class SuiteTest04 extends LambdaTestSetup {
   
 }
 
+```
+
 This is suite.testng.xml file that is used to run the test :
+
+```
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
@@ -608,23 +658,26 @@ This is suite.testng.xml file that is used to run the test :
     </test>
 </suite>
 
+```
 
 ### Execute The Test
 
 You would need to execute the below command in your terminal/cmd :
 
+```
    mvn test -P suite
+```
    
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SuiteResult1%20(2).png)
+![altext](https://github.com/keshavissar001/images/blob/master/SuiteResult1%20(2).png)
 
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/SuitrResult2.png)
+![altext](https://github.com/keshavissar001/images/blob/master/SuitrResult2.png)
 
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
  
  
 Below we see a screenshot that depicts our Robot code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
 
-![altext](https://github.com/keshavissar001/selenide-testng-sample/blob/keshavissar001-patch-1/AutomationLogs.png)
+![altext](https://github.com/keshavissar001/images/blob/master/AutomationLogs.png)
 
 ##  Testing Locally Hosted or Privately Hosted Projects
 
