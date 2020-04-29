@@ -675,7 +675,7 @@ You would need to execute the below command in your terminal/cmd :
  Want to calculate that how many parallel sessions you need by using our [Parallel Test Calculator](https://www.lambdatest.com/concurrency-calculator?ref=github)
  
  
-Below we see a screenshot that depicts our Robot code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
+Below we see a screenshot that depicts our Selenide code is running over different browsers i.e Chrome, Firefox and Safari on the LambdaTest Selenium Grid Platform. The results of the test script execution along with the logs can be accessed from the LambdaTest Automation dashboard.
 
 ![altext](https://github.com/keshavissar001/images/blob/master/AutomationLogs.png)
 
