@@ -195,7 +195,7 @@ Here is suite.conf.json file to setup mandatory details to run at LambdaTest. Yo
    
 ### 5. Running your tests
 
-Let’ start with a simple Selenium Remote Webdriver test first. This Selenide script below tests whether the expected title is same as that of given page.
+Lets start with a simple Selenium Remote Webdriver test first. This Selenide script below tests whether the expected title is same as that of given page.
 
 This is LambdaTestSetup.java file that is executed before and after every method for setting up the remote webdriver and desired capabilities :
 
