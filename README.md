@@ -45,63 +45,154 @@ LambdaTest integration with Selenide automation framework will help you pace you
    
    Install Maven from [here](https://maven.apache.org/install.html)
    
-### 3 Setup
-
-   You can download the file. To do this click on “Clone or download” button. You can download zip file.
+### 3. LambdaTest Authentication Credentials
    
-   Right click on this zip file and extract files in your desired location.
+  Make sure you have your LambdaTest credentials with you to run test automation scripts with Jest on LambdaTest Selenium Grid. You can obtain these credentials from the [LambdaTest Automation Dashboard](https://automation.lambdatest.com/) or through [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile).
+  Set LambdaTest Username and Access Key in environment variables.
+* For Linux/macOS:
+ `export LT_USERNAME="YOUR_USERNAME"
+  export LT_ACCESS_KEY="YOUR ACCESS KEY"`
 
-   Go to “selenide-testng-sample-master” folder and copy its path.
-   Open command prompt and run :
+* For Windows:
+ `set LT_USERNAME="YOUR_USERNAME"
+  set LT_ACCESS_KEY="YOUR ACCESS KEY"`
+
+## Setting Up The First Project For Selenide Automation Testing 
+
+   **Step 1:** Clone this [GitHub repository for Selenide framework](https://github.com/LambdaTest/selenide-testng-sample). To clone the file, run the below command in your terminal or command prompt:
    
-    cd <path> (that you have copied)
-    
-    (please ignore "<" , ">" symbols)
-    
-
-![altext](https://github.com/keshavissar001/images/blob/master/SetPath.png)
-
-
-•	To clone the file, click on “Clone or download” button and copy the link.
-
-	Then open the command prompt in the folder you want to clone the file. Run the command:
-
-      git clone <paste link here> 
-      
-* Make sure to install the mandatory Selenium dependencies for Maven by running the below command :
-
-    mvn compile
-    
-    ![altext](https://github.com/keshavissar001/images/blob/master/mvnCompile.png) 
-    
-* Update `*.conf.json` files inside the `src/test/resources/conf` directory with your [LambdaTest Username and Access Key](https://accounts.lambdatest.com/profile)
-
-
-"user": "YOUR_USERNAME",
+   `git clone https://github.com/LambdaTest/selenide-testng-sample.git` 
+ 
+   **Step 2:** After cloning, you'll have a zip file downloaded in your system. Right click on the zip file and extract files in your desired location.
    
-"key": "YOUR_ACCESS_KEY",
+   **Step 3:** Open terminal or command prompt and bring the pointer to the same folder where you extracted the cloned repository.  
+	![altext](https://github.com/keshavissar001/images/blob/master/SetPath.png)
+
+  **Step 4:** Under the folder **“selenide-testng-sample-master”**, add your LambdaTest `username` and `accessKey` to the `src/test/resources/conf` in “selenide-testng-sample-master”
+ [For Lambdatest Credentials, Go to Lambdatest Profile Page](https://accounts.lambdatest.com/profile) 
+  
+Here is single.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
+
+{
+	"server": "hub.lambdatest.com",
+	
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Single",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+		    "platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		}
+	}
+}
+
+```
+
+Here is parallel.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
+
+{
+	"server": "hub.lambdatest.com",
+	
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Parallel",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+		    "platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		},
+		"firefox": {
+			"platform": "windows 8.1",
+			"browserName": "firefox",
+			"version":"65"
+		},
+		"safari": {
+			"platform": "macOS Mojave",
+			"browserName": "safari",
+			"version":"12"
+		}
+	}
+}
+
+```
+
+Here is suite.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
+
+```
+
+{
+	"server": "hub.lambdatest.com",
+	
+	"user": "YOUR_USERNAME",      //put Your User Name here
+	
+	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
+
+	"capabilities": {
+		"build": "Java Selenide Suite",
+		"visual": true,
+		"network": true,
+		"console": true,
+		"tunnel": false
+	},
+
+	"environments": {
+		"chrome": {
+			"platform": "windows 10",
+			"browserName": "chrome",
+			"version":"72"
+		},
+		"firefox": {
+			"platform": "windows 8.1",
+			"browserName": "firefox",
+			"version":"65"
+		},
+		"safari": {
+			"platform": "macOS Mojave",
+			"browserName": "safari",
+			"version":"12"
+		},
+		"edge": {
+			"platform": "windows 10",
+			"browserName": "MicrosoftEdge",
+			"version":"18"
+		}
+	}
+}
+
+```
+
+ Make sure to install the mandatory Selenium dependencies for Maven by running the below command :
+
+    mvn compile 
+  
+![altext](https://github.com/keshavissar001/images/blob/master/mvnCompile.png)
 
    
-### 4. Lambdatest Credentials
-
-Set LambdaTest username and access key in environment variables.
-    
-It can be obtained from [LambdaTest dashboard](https://automation.lambdatest.com/)   
-
-    example:
-    - For linux/mac
-    ```
-    export LT_USERNAME=<YOUR_USERNAME>
-    export LT_ACCESS_KEY=<YOUR ACCESS KEY>
-    
-    ```
-    - For Windows
-    ```
-    set LT_USERNAME=<YOUR_USERNAME>
-    set LT_ACCESS_KEY=<YOUR ACCESS KEY>
-    
-    ```
-
 ### 5. Running your tests
 
 Let’ start with a simple Selenium Remote Webdriver test first. This Selenide script below tests whether the expected title is same as that of given page.
@@ -244,36 +335,6 @@ public class SingleTest extends LambdaTestSetup {
 
 ```
 
-Here is single.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
-
-```
-
-{
-	"server": "hub.lambdatest.com",
-	
-	"user": "YOUR_USERNAME",      //put Your User Name here
-	
-	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
-
-	"capabilities": {
-		"build": "Java Selenide Single",
-		"visual": true,
-		"network": true,
-		"console": true,
-		"tunnel": false
-	},
-
-	"environments": {
-		"chrome": {
-		    "platform": "windows 10",
-			"browserName": "chrome",
-			"version":"72"
-		}
-	}
-}
-
-```
-
 This is single.testng.xml file that is used to run the test :
 
 ```
@@ -307,46 +368,6 @@ This is the screenshot of the output :
 ### Executing Parallel Tests In Selenide Automation Framework
 
 One of the most important features of LambdaTest Selenium grid is the ability to run your test cases in parallel. What that means is that if you have more than one concurrent session, you can run your test cases on more than one machine at a time, which greatly cuts down your test times. To put it in perspective, if you have 100 test cases each with an average run time of 1 minute, without parallel testing it would take 100 minutes to execute. However, with 2 concurrent sessions, you can run 2 test cases in parallel at a time and can cut down the build’s test time to 50 minutes. With four concurrent sessions, it would cut down to 25 minutes. With eight, well you got the picture.
-
-Here is parallel.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
-
-```
-
-{
-	"server": "hub.lambdatest.com",
-	
-	"user": "YOUR_USERNAME",      //put Your User Name here
-	
-	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
-
-	"capabilities": {
-		"build": "Java Selenide Parallel",
-		"visual": true,
-		"network": true,
-		"console": true,
-		"tunnel": false
-	},
-
-	"environments": {
-		"chrome": {
-		    "platform": "windows 10",
-			"browserName": "chrome",
-			"version":"72"
-		},
-		"firefox": {
-			"platform": "windows 8.1",
-			"browserName": "firefox",
-			"version":"65"
-		},
-		"safari": {
-			"platform": "macOS Mojave",
-			"browserName": "safari",
-			"version":"12"
-		}
-	}
-}
-
-```
 
 This is parallel.testng.xml file that is used to run the test :
 
@@ -396,51 +417,6 @@ This is the screenshot of the output :
 ![altext](https://github.com/keshavissar001/images/blob/master/ParallelResult.png)
 
 ### Executing Test Suite In Selenide Automation Framework
-
-Here is suite.conf.json file to setup mandatory details to run at LambdaTest. You would need to put your LambdaTest authentication credentials (Access key & Username) :
-
-```
-
-{
-	"server": "hub.lambdatest.com",
-	
-	"user": "YOUR_USERNAME",      //put Your User Name here
-	
-	"key": "YOUR_ACCESS_KEY",     //put Your Access Key here
-
-	"capabilities": {
-		"build": "Java Selenide Suite",
-		"visual": true,
-		"network": true,
-		"console": true,
-		"tunnel": false
-	},
-
-	"environments": {
-		"chrome": {
-			"platform": "windows 10",
-			"browserName": "chrome",
-			"version":"72"
-		},
-		"firefox": {
-			"platform": "windows 8.1",
-			"browserName": "firefox",
-			"version":"65"
-		},
-		"safari": {
-			"platform": "macOS Mojave",
-			"browserName": "safari",
-			"version":"12"
-		},
-		"edge": {
-			"platform": "windows 10",
-			"browserName": "MicrosoftEdge",
-			"version":"18"
-		}
-	}
-}
-
-```
 
 Now here are the test suites file which will be executed for the automation test through LambdaTest :
 
